@@ -1,6 +1,7 @@
-#! /usr/bin/perl -w
+#! /usr/bin/perl
 
 use strict;
+use warnings;
 
 
 my $progname = $0;
@@ -81,7 +82,7 @@ foreach my $qid (keys %matches) {
 close $tfh;
 
 
-open (my $ipgfh, "<", "ipg.tmp.txt") or die "FATAL : Unable to open ipg tmp file for reading! $!";
+open (my $ipgfh, "<", "ipg.tmp") or die "FATAL : Unable to open ipg tmp file for reading! $!";
 print "#query_id\tquery_len\tsubject_len\tsubject_wp\tevalue\tpident\tquery_cov\tspecific_id\torganism\tstrain\tchr\tstart\tstop\tstrand\n";
 while (my $line = <$ipgfh>) {
 	chomp $line;

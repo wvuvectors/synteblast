@@ -1,6 +1,8 @@
-#! /usr/bin/perl -w
+#! /usr/bin/perl
 
 use strict;
+use warnings;
+
 
 my $progname = $0;
 $progname =~ s/^.*?([^\/]+)$/$1/;

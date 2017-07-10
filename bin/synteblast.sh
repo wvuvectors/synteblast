@@ -114,7 +114,7 @@ fi
 
 
 
-if [ $force -eq 0 -a -f "$blastf" ];then
+if [ "$force" == '0' ] && [ -f "$blastf" ];then
 	echo "WARN  : 01 A blastp output file ($blastf) already exists in the current working directory."
 	echo "WARN  : 02 Since remote blast is a time-intensive process, the existing file will be used."
 	echo "WARN  : 03 To change this behavior, and always run the remote blast, re-run synteblast with the -F (force) flag set."
@@ -148,12 +148,12 @@ fi
 
 
 # remove any hits that fall below the %id and qcovs thresholds
-snyteblast_thresh.pl -p $t_pctid -c $t_qcovs < "$out.0.blastp" > "$out.1.threshed"
+synteblast_thresh.pl -p $t_pctid -c $t_qcovs < "$out.0.blastp" > "$out.1.threshed"
 
 # add taxonomy info to threshed hits
 synteblast_taxify.pl < "$out.1.threshed" > "$out.2.taxed"
 mv "ipg.tmp" "$out.ipg.tmp"
 
-# score and sort taxa by % occupancy
-synteblast_occupy.pl -i "$query" < "$out.2.taxed" > "$out.3.ranked"
+# score and sort hits
+synteblast_rank.pl -i "$query" < "$out.2.taxed" > "$out.3.ranked"
 

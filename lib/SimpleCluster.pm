@@ -19,6 +19,15 @@ sub kmeans {
 	
 	my $debug  = 0;
 	
+	# shortcut if the number of input nodes does not exceed k
+	if ($k >= scalar(keys %$pts)) {
+		my @a = ();
+		foreach my $id (keys %$pts) {
+			push @a, [$id];
+		}
+		return \@a;
+	}
+	
 	my $thresh = 0.02;
 	my $delta  = 20;
 	my $bugout = 1000;
