@@ -1,13 +1,13 @@
 # synteBLAST v0.1
 **BLAST-based, synteny-aware (protein) sequence searching.**
 
-## Attribution
-*synteBLAST* was written by [Timothy Driscoll](http://www.driscollMML.com/) at West Virginia University, Morgantown, WV USA. The concept for a synteny-aware search algorithm arose from discussions and work with numerous other researchers, most notably: Joseph J. Gillespie, University of Maryland; and Victoria Verhoeve, West Virginia University.
-
 ## Description
 *synteBLAST* is a search pipeline designed to find co-linear (syntenic) blocks of genes that are similar to a query block in both **sequence** and **arrangement on the genome**.
 
 Prokaryotes often utilize blocks of cotranscribed genes called operons to carry out similar functional tasks. The texbook example of operons (literally) is the *lac* operon of *Escherichia coli*.
+
+## Attribution
+*synteBLAST* was written by [Timothy Driscoll](http://www.driscollMML.com/) at West Virginia University, Morgantown, WV USA. The concept for a synteny-aware search algorithm arose from discussions and work with numerous other researchers, most notably: Joseph J. Gillespie, University of Maryland; and Victoria Verhoeve, West Virginia University.
 
 ## Installation
 *synteBLAST* is built on Perl and Bash. It requires no special installation (but see **Dependencies** below).
