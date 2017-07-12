@@ -45,37 +45,38 @@ NeedlemanWunsch is a Perl module that can be accessed via CPAN, the central Perl
 If you have installed Perl yourself (for example, using a package manager like **homebrew**), or your Perl is not system-level (usually the case on remote servers), you can follow the same steps but probably don't need to sudo. Other options for installing Perl modules are [numerous](http://www.cpan.org/modules/INSTALL.html) [and](https://perlmaven.com/how-to-install-a-perl-module-from-cpan) [plentiful](http://www.thegeekstuff.com/2008/09/how-to-install-perl-modules-manually-and-using-cpan-command/) on the Internet.
 
 
-## Use
-In the simplest case, run the *synteBLAST* wrapper script and pass the file that contains the co-linear block to use as query:
+## Using synteBLAST
+Run the *synteBLAST* wrapper shell script, passing it a fasta file that contains the co-linear block to use as query:
+
 `synteblast.sh -i INPUT_BLOCK.faa -o OUTPUT_BASE`
 
-The *synteBLAST* wrapper script also accepts a number of parameters that allow you to customize it further:
+The wrapper script accepts a number of optional parameters that allow you to customize it further:
 
-##### -i \<*filepath*\>
-REQUIRED
-Path to a **protein fasta file** containing the ordered query sequences.
+> ##### -i \<*filepath*\>
+> REQUIRED
+> Path to a **protein fasta file** containing the ordered query sequences.
 
-##### -o \<*string*\>
-REQUIRED
-String to use as the prefix to **project output** file names.
+> ##### -o \<*string*\>
+> REQUIRED
+> String to use as the prefix to **project output** file names.
 
-##### -e \<*float*\>
-Value to use as the **maximum e-value** for sequence matches. Used during the initial remote blast query. (0.001)
+> ##### -e \<*float*\>
+> Value to use as the **maximum e-value** for sequence matches. Used during the initial remote blast query. (0.001)
 
-##### -p \<*float*\>
-Value (0-100) to use as the **minimum percent identity** between match and query. Used during the thresholding step. (40)
+> ##### -p \<*float*\>
+> Value (0-100) to use as the **minimum percent identity** between match and query. Used during the thresholding step. (40)
 
-##### -c \<*float*\>
-Value (0-100) to use as the **minimum percent coverage** across the query. Used during the thresholding step. (60)
+> ##### -c \<*float*\>
+> Value (0-100) to use as the **minimum percent coverage** across the query. Used during the thresholding step. (60)
 
-##### -f \<*string*\>
-**Entrez string** to filter the initial remote blast query. (bacteria[orgn] AND "srcdb refseq"[Properties])
+> ##### -f \<*string*\>
+> **Entrez string** to filter the initial remote blast query. (bacteria[orgn] AND "srcdb refseq"[Properties])
 
-##### -m \<*string*\>
-**Scoring matrix** to use for the initial remote blast query. (BLOSUM45)
+> ##### -m \<*string*\>
+> **Scoring matrix** to use for the initial remote blast query. (BLOSUM45)
 
-##### -F
-Set this flag to **force** synteBLAST to write over an existing blast file. By default, the initial blast query will not be run if an output file already exists, since this is a rate-limiting step.
+> ##### -F
+> Set this flag to **force** synteBLAST to write over an existing blast file. By default, the initial blast query will not be run if an output file already exists, since this is a rate-limiting step.
 
 
 
