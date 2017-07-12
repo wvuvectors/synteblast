@@ -114,11 +114,12 @@ fi
 
 
 
-if [ "$force" == '0' ] && [ -f "$blastf" ];then
-	echo "WARN  : 01 A blastp output file ($blastf) already exists in the current working directory."
+if [ "$force" == '0' ] && [ -f "$out.0.blastp" ];then
+	echo "WARN  : 01 A blastp output file ($out.0.blastp) already exists in the current working directory."
 	echo "WARN  : 02 Since remote blast is a time-intensive process, the existing file will be used."
 	echo "WARN  : 03 To change this behavior, and always run the remote blast, re-run synteblast with the -F (force) flag set."
 else
+	exit
 	# blastp the input proteins against nr using input parameters for eval, %ID, %align, and max_hits
 	echo "time blastp \
 -task blastp \
@@ -144,6 +145,7 @@ else
 -matrix "$matrix" \
 -out "$out.0.blastp" \
 -max_target_seqs $t_matches
+
 fi
 
 
