@@ -12,18 +12,21 @@ synteblast v$VERSION.
 Created by $AUTHORS.
 
 Usage:
-  synteblast -a FILE (-m DIR &| -p DIR &| -b DIR) [-o OUTBASE] [-d]
+  synteblast -i FILE [-o STRING] [-e FLOAT] [-p FLOAT] [-c FLOAT] [-f STRING] [-m STRING] [-F]
   synteblast -h
   synteblast -v
 
 Options:
   -h          Show this screen.
   -v          Show version.
-  -f FILE     Protein fasta file used as original input to BlastKOALA, for retrieving annotations.
-  -p DIR      Directory containing the BlastKOALA pathway html files.
-  -m DIR      Directory containing the BlastKOALA module html files.
-  -b DIR      Directory containing the BlastKOALA brite html files.
-  -o OUTBASE  Print taxon-sorted summaries to files that begin with OUTBASE [default: kcompile.out].
+  -i FILE     Protein fasta file containing the ordered query sequences.
+  -o STRING   String prefix to append to all output files [default: synteblast_out].
+  -e FLOAT    Expect value maximum threhold to retain a blast hit during the remote blast [default: 0.001].
+  -p FLOAT    Percent idenity minimum threshold to retain a blast hit during the thresholding phase [default: 40].
+  -c FLOAT    Query coverage minimum threshold to retain a blast hit during the thresholding phase [default: 60].
+  -f STRING   Entrez filter to restrict search space of the blast run [default: bacteria[orgn] AND \"srcdb refseq\"[Properties]].
+  -m STRING   Scoring matrix to use during the remote blast [default: BLOSUM45].
+  -F          Force an overwrite of an existing blast results table of the same name [default: FALSE].
 
 "
 			exit 0
@@ -48,7 +51,6 @@ Please visit https://github.com/driscollmml/synteblast for more information or t
 			query=$OPTARG
 			;;
 		o)
-			# REQUIRED
 			# output name base
 			out=$OPTARG
 			;;
@@ -103,18 +105,18 @@ if [ -z "$query" ]; then
 fi
 
 if [ -z "$out" ]; then
-	echo "FATAL : An output name is REQUIRED [-o <string>]." >&2
-	exit 1
+	echo "WARN  : No output base was provided [-o <string>]. Using the default 'synteblast_out' instead." >&2
+	out="synteblast_out"
 fi
 
-if [ -z "$rbb" ]; then
-	rbb=0
-fi
+#if [ -z "$rbb" ]; then
+#	rbb=0
+#fi
 
-if [ $rbb -eq 1 -a -z "$genome" ]; then
-	echo "FATAL : Reciprical best blast (RBB) mode is enabled (-r). A protein fasta file containing all proteins in the query genome is REQUIRED [-g <filepath>]." >&2
-	exit 1
-fi
+#if [ $rbb -eq 1 -a -z "$genome" ]; then
+#	echo "FATAL : Reciprical best blast (RBB) mode is enabled (-r). A protein fasta file containing all proteins in the query genome is REQUIRED [-g <filepath>]." >&2
+#	exit 1
+#fi
 
 if [ -z "$t_evalue" ]; then
 	t_evalue=0.001
@@ -151,7 +153,6 @@ if [ "$force" == '0' ] && [ -f "$out.0.blastp" ];then
 	echo "WARN  : 02 Since remote blast is a time-intensive process, the existing file will be used." >&2
 	echo "WARN  : 03 To change this behavior, and always run the remote blast, re-run synteblast with the -F (force) flag set." >&2
 else
-	exit
 	# blastp the input proteins against nr using input parameters for eval, %ID, %align, and max_hits
 	echo "time blastp \
 -task blastp \

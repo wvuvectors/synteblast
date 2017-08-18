@@ -2,6 +2,9 @@
 use strict;
 
 use Algorithm::NeedlemanWunsch;
+
+use File::Basename;
+use lib dirname(__FILE__) . "/lib";
 use SimpleCluster;
 
 
@@ -187,7 +190,7 @@ foreach my $chr (keys %dups) {
 
 # calculate scores for synteny (colinearity; C), strandedness (S), and occupancy (U) on each chromosome
 # 
-my $Ur = scalar keys $master{"ref"};
+my $Ur = scalar keys %{$master{"ref"}};
 my @Ar = (1..$seq_count);
 my $matcher = Algorithm::NeedlemanWunsch->new(\&score_sub);
 

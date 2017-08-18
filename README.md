@@ -14,20 +14,28 @@ Prokaryotes often utilize blocks of cotranscribed genes called operons to carry 
 
 ## Using synteBLAST
 
+###### QuickStart
+
 Run the `synteblast` wrapper shell script, passing it a fasta file that contains the sequences for the colinear block, in the desired order, to use as query:
 
-`synteblast.sh -i INPUT_BLOCK.faa -o OUTPUT_BASE`
+`synteblast.sh -i INPUT_BLOCK.faa`
+
+`synteblast` will produce four output files, all with the prefix *synteblast_out*. The final results are written to a file called *synteblast_out.3.ranked*; this is a tab-delimited file containing all matches to the query block in order (best matches at the top). This file can be imported or copied directly into an app like Excel.
+
+###### CustomStart
+
+`synteblast` also accepts several optional arguments that you can use to customize your results. A complete list can be found by running `synteblast -h`.
+
+`synteblast.sh -i INPUT_BLOCK.faa [-o OUTBASE] [-e FLOAT] [-p FLOAT] [-c FLOAT] [-f STRING] [-m STRING] [-F]`
 
 > ##### -i \<*filepath*\>
 > REQUIRED
 > Path to a **protein fasta file** containing the ordered query sequences.
 
+
 > ##### -o \<*string*\>
-> REQUIRED
+> OPTIONAL
 > String to use as the prefix to **project output** file names.
-
-
-The wrapper script also accepts a number of optional parameters that allow you to customize it further:
 
 > ##### -e \<*float*\>
 > OPTIONAL
@@ -51,7 +59,7 @@ The wrapper script also accepts a number of optional parameters that allow you t
 
 > ##### -F
 > OPTIONAL
-> Set this flag to **force** synteBLAST to write over an existing blast file. By default, the initial blast query will not be run if an output file of the same name already exists, since this is a rate-limiting step. [default: false]
+> Set this flag to **force** synteblast to write over an existing blast file. By default, the initial blast query will not be run if an output file of the same name already exists, since this is a rate-limiting step. [default: false]
 
 
 ## License

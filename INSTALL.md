@@ -40,3 +40,7 @@ NeedlemanWunsch is a Perl module that can be accessed via CPAN, the central Perl
 
 If you have installed Perl yourself (for example, using a package manager like **homebrew**), or your Perl is not system-level (usually the case on remote servers), you can follow the same steps but probably don't need to sudo. Other options for installing Perl modules are [numerous](http://www.cpan.org/modules/INSTALL.html) [and](https://perlmaven.com/how-to-install-a-perl-module-from-cpan) [plentiful](http://www.thegeekstuff.com/2008/09/how-to-install-perl-modules-manually-and-using-cpan-command/) on the Internet.
 
+### [File::Basename v2.85](https://metacpan.org/pod/File::Basename)
+
+File::Basename is a Perl module like Algorithim::NeedlemanWunsch, and can be installed in similar fashion.
+
