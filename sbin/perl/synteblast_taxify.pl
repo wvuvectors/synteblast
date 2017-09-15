@@ -56,7 +56,8 @@ foreach my $qid (keys %matches) {
 		my @idsplice = splice(@wp_ids, 0, $bin);
 		my $wp_sublist = join(",", @idsplice);
 		warn "NOTE  : Querying NCBI for " . scalar(@idsplice) . " WP_ id matches to $qid.\n";
-		#warn "$wp_sublist\n\n";
+		#warn "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=$wp_sublist&rettype=ipg&retmode=text\n\n";
+		#die;
 		my $ipgstr = `curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=$wp_sublist&rettype=ipg&retmode=text"`;
 	
 		my @rows = split /\n/, $ipgstr;
@@ -65,6 +66,8 @@ foreach my $qid (keys %matches) {
 		my $wp_id = "Unk";
 		foreach my $row (@rows) {
 			my @cols = split /\t/, $row, -1;
+			shift @cols unless lc $cols[0] eq "refseq" or lc $cols[0] eq "insdc";
+			next unless scalar @cols > 5;
 			if (lc $cols[0] eq "refseq" and $cols[5] =~ /^WP_/i) {
 				$wp_id = $cols[5];
 			} elsif (lc $cols[0] eq "insdc") {
