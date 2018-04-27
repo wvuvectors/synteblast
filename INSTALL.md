@@ -1,6 +1,6 @@
 # INSTALL INSTRUCTIONS
 
-### synteBLAST v0.1
+### synteBLAST v1.0
 [https://github.com/driscollmml/synteblast](https://github.com/driscollmml/synteblast)
 
 
@@ -8,7 +8,7 @@
 `synteblast` is built on Perl and Bash. It requires no special compilation or installation (but see **Dependencies** below).
 
 1. Download or checkout the latest version of `synteblast` from [github](https://github.com/driscollmml/synteblast).
-2. Unzip the downloaded file and move the resulting folder to a convenient location on your computer. If you checked out the repository instead, skip this step.
+2. Unzip the downloaded file and move the resulting folder to a convenient location on your computer. (If you checked out the repository instead, skip this step.)
 3. For ease of use, add the **synteblast/sbin/** folder to your PATH variable. Do not remove or re-organize the files in **sbin/**.
 4. Install the dependencies listed below.
 
@@ -43,4 +43,7 @@ If you have installed Perl yourself (for example, using a package manager like *
 ### [File::Basename v2.85](https://metacpan.org/pod/File::Basename)
 
 File::Basename is a Perl module like Algorithim::NeedlemanWunsch, and can be installed in similar fashion.
+
+1. `sudo perl -MCPAN -e shell`
+2. `install File::Basename`
 

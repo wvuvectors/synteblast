@@ -51,7 +51,7 @@ while (my $line = <$rfh>) {
 		my ($qid, $ann) = split /\s+/, "$line", 2;
 		if ($qid =~ /\|/) {
 			$qid .= "|" unless $qid =~ /\|$/;
-			$qid = $1 if $qid =~ /.+?\|.+?\|.+?\|(.+?)\|/ or $qid =~ /.+?\|(.+?)\|/;
+			#$qid = $1 if $qid =~ /.+?\|.+?\|.+?\|(.+?)\|/ or $qid =~ /.+?\|(.+?)\|/;
 		}
 		$master{"ref"}->{$seq_count} = {
 			"start"       => $seq_count, 
@@ -269,7 +269,7 @@ sub score_sub {
 		return -2; # gap penalty
 	}
 
-	return ($_[0] eq $_[1]) ? 1 : -1;
+	return ("$_[0]" eq "$_[1]") ? 1 : -1;
 }
 
 sub on_align {

@@ -146,6 +146,9 @@ if [ -z "$force" ]; then
 	force=0
 fi
 
+s=$(grep -c '^>' "$query")
+t_matches=$[s*t_matches]
+
 
 
 if [ "$force" == '0' ] && [ -f "$out.0.blastp" ];then

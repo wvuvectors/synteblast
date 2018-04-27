@@ -1,15 +1,15 @@
-# synteBLAST v0.1
+# synteBLAST v1.0
 **BLAST-based, synteny-aware (protein) sequence searching.**
 
 
 ## Description
 `synteBLAST` is a search pipeline designed to find co-linear (syntenic) blocks of genes that are similar to a query block in both **sequence** and **arrangement on the genome**.
 
-Prokaryotes often utilize blocks of cotranscribed genes called operons to carry out similar functional tasks. The texbook example of operons (literally) is the *lac* operon of *Escherichia coli*.
+Prokaryotes often utilize blocks of cotranscribed genes called operons to carry out similar functional tasks. A texbook example of operons (literally) is the *lac* operon of *Escherichia coli*.
 
 
 ## Attribution
-`synteBLAST` was written by [Timothy Driscoll](http://www.driscollMML.com/) at West Virginia University, Morgantown, WV USA. The concept for a synteny-aware search algorithm arose from discussions and work with numerous other researchers, most notably: Joseph J. Gillespie, University of Maryland; and Victoria Verhoeve, West Virginia University.
+`synteBLAST` was written by [Timothy Driscoll](http://www.driscollMML.com/) at West Virginia University, Morgantown, WV USA. The concept for a synteny-aware search algorithm arose from discussions and work with numerous other researchers, most notably Joseph J. Gillespie (University of Maryland) and Victoria Verhoeve (West Virginia University).
 
 
 ## Using synteBLAST
@@ -18,7 +18,7 @@ Prokaryotes often utilize blocks of cotranscribed genes called operons to carry 
 
 Run the `synteblast` wrapper shell script, passing it a fasta file that contains the sequences for the colinear block, in the desired order, to use as query:
 
-`synteblast.sh -i INPUT_BLOCK.faa`
+`synteblast -i INPUT_BLOCK.faa`
 
 `synteblast` will produce four output files, all with the prefix *synteblast_out*. The final results are written to a file called *synteblast_out.3.ranked*; this is a tab-delimited file containing all matches to the query block in order (best matches at the top). This file can be imported or copied directly into an app like Excel.
 
@@ -26,7 +26,7 @@ Run the `synteblast` wrapper shell script, passing it a fasta file that contains
 
 `synteblast` also accepts several optional arguments that you can use to customize your results. A complete list can be found by running `synteblast -h`.
 
-`synteblast.sh -i INPUT_BLOCK.faa [-o OUTBASE] [-e FLOAT] [-p FLOAT] [-c FLOAT] [-f STRING] [-m STRING] [-F]`
+`synteblast -i INPUT_BLOCK.faa [-o OUTBASE] [-e FLOAT] [-p FLOAT] [-c FLOAT] [-f STRING] [-m STRING] [-F]`
 
 > ##### -i \<*filepath*\>
 > REQUIRED
@@ -59,7 +59,7 @@ Run the `synteblast` wrapper shell script, passing it a fasta file that contains
 
 > ##### -F
 > OPTIONAL
-> Set this flag to **force** synteblast to write over an existing blast file. By default, the initial blast query will not be run if an output file of the same name already exists, since this is a rate-limiting step. [default: false]
+> Set this flag to **force** synteblast to write over an existing blast file. By default, the initial blast query will not be run if an output file of the same name already exists, since this is almost always a very time-consuming step. [default: false]
 
 
 ## License
